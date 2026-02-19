@@ -1,15 +1,50 @@
 package org.example;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordValidatorTest {
 
     @org.junit.jupiter.api.Test
-    void hasMinLength() {
+    void testHasMinLength_NullPassword_ReturnsFals() {
+        //Given
+        String password = null;
+        int minLength =8;
+
+        boolean expectedResult = false;
+        //When
+        boolean actual = PasswordValidator.hasMinLength(password, minLength);
+        //Then
+        assertEquals(expectedResult, actual);
     }
 
+    @Test
+    void testHasMinLength_TooShortPassword_ReturnsFalse(){
+        //Given
+        String password = "1234567";
+        int minLength =8;
+
+        boolean expectedResult = false;
+        //When
+        boolean actual = PasswordValidator.isValid(password);
+
+        //Then
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    void testIsValid_TooShortPassword_ReturnsFalse(){
+        //Given
+        String password = "Abc0";
+        boolean expectedResult = false;
+        //When
+        boolean actual = PasswordValidator.isValid(password);
+    }
     @org.junit.jupiter.api.Test
     void containsDigit() {
+        //Given
+        String password = "abcd1235";
     }
 
     @org.junit.jupiter.api.Test
