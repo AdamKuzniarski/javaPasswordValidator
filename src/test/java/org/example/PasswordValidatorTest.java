@@ -59,26 +59,32 @@ class PasswordValidatorTest {
         //Then
         assertEquals(expectedResult, actual);
     }
-
     @Test
-    void containsDigit() {
+    void testIsValid_NoUpperCase_ReturnsFalse(){
         //Given
-        String password = "abcd1235";
+        String password ="abcdefg1";
+        //When
+        boolean actual = PasswordValidator.isValid(password);
+        //Then
+       assertFalse(actual);
     }
+@Test
+void testIsValid_CommonPassword_ReturnsFalse(){
+    //Given
+    String password = "password";
+    //When
+    boolean actual = PasswordValidator.isValid(password);
+    //Then
+    assertFalse(actual);
+}
 
-    @org.junit.jupiter.api.Test
-    void containsUpperAndLowerCase() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void isCommonPassword() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void containsSpecialCharacter() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void isValid() {
-    }
+@Test
+    void testIsValid_AllBaseRules_ReturnsTrue(){
+    //Given
+    String password = "Abcdefg1!";
+    //When
+    boolean actual = PasswordValidator.isValid(password);
+    //Then
+    assertTrue(actual);
+}
 }
