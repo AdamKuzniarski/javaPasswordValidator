@@ -10,7 +10,11 @@ public class PasswordValidator {
 
         private PasswordValidator(){}
 
-        public static boolean hasMinLength(String password, int min){return false;}
+        public static boolean hasMinLength(String password, int min){
+            if(password == null) return false;
+
+            return password.length() >= min;
+        }
         public static boolean containsDigit(String password){return false;}
         public static boolean containsUpperAndLowerCase(String password){return false;}
         public static boolean isCommonPassword(String password){return false;}
