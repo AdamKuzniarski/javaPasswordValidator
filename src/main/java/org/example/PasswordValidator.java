@@ -1,12 +1,12 @@
 package org.example;
 
+
 public class PasswordValidator {
     private static final int DEFAULT_MIN_LENGTH = 8;
     private static final String DEFAULT_ALLOWED_SPECIAL_CHARACTERS = "!@#$%^&*()_+-=[]{}|;':\"<>,.?/";
     private static final String[] COMMON_PASSWORDS = {
             "password", "123456", "123456789", "qwerty", "abc123",
-            "football", "monkey", "letmein", "111111", "welcome"
-    };
+            "football", "monkey", "letmein", "111111", "welcome"};
 
     private PasswordValidator() {
     }
@@ -20,26 +20,44 @@ public class PasswordValidator {
     public static boolean containsDigit(String password) {
         if (password == null) return false;
 
-        char[] chars = password.toCharArray(); // toChaArray() Methode macht aus String ein Array von chars
+        char[] chars = password.toCharArray();// toCharArray macht aus einem String ein Array von chars
         for (char tempChar : chars) {
-            if (Character.isDigit(tempChar)) { // isDigit() Methode prüft, ob der char eine Ziffer ist
-                return true;
-            }
-            return false;
+            if (Character.isDigit(tempChar)) return true;
         }
-        public static boolean containsUpperAndLowerCase (String password){
-            ;
-        }
-        public static boolean isCommonPassword (String password){
-            return false;
-        }
-
-        public static boolean containsSpecialCharacter (String password, String allowed){
-            return false;
-        }
-        public static boolean isValid (String password){
-            return false;
-        }
-
+        return false;
     }
 
+    public static boolean containsUpperAndLowerCase(String password) {
+        if (password == null) return false;
+        boolean hasUpper = false;
+        boolean hasLower = false;
+
+        char[] chars = password.toCharArray();
+        for (char tempChar : chars) {
+            if (Character.isUpperCase(tempChar)) hasUpper = true;
+            if (Character.isLowerCase(tempChar)) hasLower = true;
+
+            if (hasUpper && hasLower) return true;
+
+        }
+        return false;
+    }
+
+    public static boolean isCommonPassword(String password) {
+        if (password == null) return false;
+
+        String normalizedPassword = password.toLowerCase();
+        for (String common : COMMON_PASSWORDS) {
+            if (normalizedPassword.equals(common)) return true;
+        }
+        return false;
+    }
+
+    public static boolean containsSpecialCharacter(String password, String allowed) {
+        return false;
+    }
+
+    public static boolean isValid(String password) {
+        return false;
+    }
+}
