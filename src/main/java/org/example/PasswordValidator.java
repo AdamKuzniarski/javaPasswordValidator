@@ -54,10 +54,23 @@ public class PasswordValidator {
     }
 
     public static boolean containsSpecialCharacter(String password, String allowed) {
+        if (password == null) return false;
+        if (password == null || allowed.isEmpty()) return false;
+
+        char[] chars = password.toCharArray();
+        for (char tempChar : chars) {
+            for (int i = 0; i < allowed.length(); i++) {
+                if (tempChar == allowed.charAt(i)) return true;
+            }
+        }
+
         return false;
     }
 
     public static boolean isValid(String password) {
-        return false;
+        if (password == null) return false;
+    boolean base = hasMinLength(password, DEFAULT_MIN_LENGTH) && containsDigit(password) && containsUpperAndLowerCase(password) && !isCommonPassword(password);
+    if (!base) return false;
+    return  base;
     }
 }
