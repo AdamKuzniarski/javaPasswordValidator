@@ -46,7 +46,7 @@ public class PasswordValidator {
     public static boolean isCommonPassword(String password) {
         if (password == null) return false;
 
-        String normalizedPassword = password.toLowerCase();
+        String normalizedPassword = password.toLowerCase().trim();
         for (String common : COMMON_PASSWORDS) {
             if (normalizedPassword.equals(common)) return true;
         }
@@ -55,7 +55,7 @@ public class PasswordValidator {
 
     public static boolean containsSpecialCharacter(String password, String allowed) {
         if (password == null) return false;
-        if (password == null || allowed.isEmpty()) return false;
+        if (allowed == null || allowed.isEmpty()) return false;
 
         char[] chars = password.toCharArray();
         for (char tempChar : chars) {
